@@ -5,12 +5,14 @@ import com.ezcode.ezprocure.dto.*;
 import java.util.List;
 
 public interface VendorRegService {
-    public List<MCountryDto> fetchAllCountry();
-    public List<MLocDto> fetchAllStates();
-    public List<MSublocDto> fetchAllCities();
-    public List<MBuildingDto> fetchDistrictsById(int id);
-    public List<MBussTypeDto> fetchAllBusType();
-    public List<MAssetDivDto> fetchAllAssetDiv();
-    public List<MSubassetDivDto> fetchSubAssetDivBId(int id);
-    public List<MCertificateTypeDto> fetchAllCertType();
+    List<MCountryDto> fetchAllCountry() throws Exception;
+    List<MLocDto> fetchAllStates();
+    List<MSublocDto> fetchAllCities();
+    List<MBuildingDto> fetchDistrictsById(int id);
+    List<MBussTypeDto> fetchAllBusType();
+    List<MAssetDivDto> fetchAllAssetDiv();
+    List<MSubassetDivDto> fetchSubAssetDivBId(int id);
+    List<MCertificateTypeDto> fetchAllCertType();
+
+    boolean saveVendorFormReg(MVendorDto mVendorDto);
 }

@@ -4,8 +4,8 @@ import java.security.Key;
 import java.util.Date;
 
 import com.ezcode.ezprocure.services.UserDetailsImpl;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

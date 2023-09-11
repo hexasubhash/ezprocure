@@ -2,7 +2,7 @@ package com.ezcode.ezprocure.models;
 
 import java.util.HashSet;
 import java.util.Set;
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users",

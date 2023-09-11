@@ -10,12 +10,17 @@ import java.util.Objects;
 public class MBussTypeDto implements Serializable {
     private final int idBussType;
     private final String nmBussType;
-    private final Collection<MVendorDto> mVendorsByIdBussType;
+    private Collection<MVendorDto> mVendorsByIdBussType;
 
     public MBussTypeDto(int idBussType, String nmBussType, Collection<MVendorDto> mVendorsByIdBussType) {
         this.idBussType = idBussType;
         this.nmBussType = nmBussType;
         this.mVendorsByIdBussType = mVendorsByIdBussType;
+    }
+
+    public MBussTypeDto(int idBussType, String nmBussType) {
+        this.idBussType = idBussType;
+        this.nmBussType = nmBussType;
     }
 
     public int getIdBussType() {

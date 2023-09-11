@@ -13,7 +13,7 @@ public class MSubassetDivDto implements Serializable {
     private final String preAsset;
     private final String typeCus;
     private final String fileName;
-    private final MAssetDivDto mAssetDivByIdAssetdiv;
+    private MAssetDivDto mAssetDivByIdAssetdiv;
 
     public MSubassetDivDto(int idSAssetdiv, String nmSAssetdiv, String cdSAssetdiv, String preAsset, String typeCus, String fileName, MAssetDivDto mAssetDivByIdAssetdiv) {
         this.idSAssetdiv = idSAssetdiv;
@@ -23,6 +23,15 @@ public class MSubassetDivDto implements Serializable {
         this.typeCus = typeCus;
         this.fileName = fileName;
         this.mAssetDivByIdAssetdiv = mAssetDivByIdAssetdiv;
+    }
+
+    public MSubassetDivDto(int idSAssetdiv, String nmSAssetdiv, String cdSAssetdiv, String preAsset, String typeCus, String fileName) {
+        this.idSAssetdiv = idSAssetdiv;
+        this.nmSAssetdiv = nmSAssetdiv;
+        this.cdSAssetdiv = cdSAssetdiv;
+        this.preAsset = preAsset;
+        this.typeCus = typeCus;
+        this.fileName = fileName;
     }
 
     public int getIdSAssetdiv() {

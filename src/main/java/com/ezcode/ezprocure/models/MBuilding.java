@@ -1,11 +1,11 @@
 package com.ezcode.ezprocure.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Objects;
 
 @Entity
-@Table(name = "M_Building", schema = "dbo", catalog = "TRIALP2P")
+@Table(name = "M_Building")
 public class MBuilding {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

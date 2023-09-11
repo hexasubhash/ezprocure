@@ -1,7 +1,6 @@
 package com.ezcode.ezprocure.dto;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -13,17 +12,24 @@ public class MSublocDto implements Serializable {
     private final String nmSubl;
     private final String gstin;
     private final String gstDoc;
-    private final MLocDto mLocByIdLoc;
-    private final Collection<MVendorDto> mVendorsByIdSloc;
+    private MLocDto mLocByIdLoc;
 
-    public MSublocDto(int idSloc, String cdSubl, String nmSubl, String gstin, String gstDoc, MLocDto mLocByIdLoc, Collection<MVendorDto> mVendorsByIdSloc) {
+
+    public MSublocDto(int idSloc, String cdSubl, String nmSubl, String gstin, String gstDoc, MLocDto mLocByIdLoc) {
         this.idSloc = idSloc;
         this.cdSubl = cdSubl;
         this.nmSubl = nmSubl;
         this.gstin = gstin;
         this.gstDoc = gstDoc;
         this.mLocByIdLoc = mLocByIdLoc;
-        this.mVendorsByIdSloc = mVendorsByIdSloc;
+    }
+
+    public MSublocDto(int idSloc, String cdSubl, String nmSubl, String gstin, String gstDoc) {
+        this.idSloc = idSloc;
+        this.cdSubl = cdSubl;
+        this.nmSubl = nmSubl;
+        this.gstin = gstin;
+        this.gstDoc = gstDoc;
     }
 
     public int getIdSloc() {
@@ -50,10 +56,6 @@ public class MSublocDto implements Serializable {
         return mLocByIdLoc;
     }
 
-    public Collection<MVendorDto> getMVendorsByIdSloc() {
-        return mVendorsByIdSloc;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -64,13 +66,12 @@ public class MSublocDto implements Serializable {
                 Objects.equals(this.nmSubl, entity.nmSubl) &&
                 Objects.equals(this.gstin, entity.gstin) &&
                 Objects.equals(this.gstDoc, entity.gstDoc) &&
-                Objects.equals(this.mLocByIdLoc, entity.mLocByIdLoc) &&
-                Objects.equals(this.mVendorsByIdSloc, entity.mVendorsByIdSloc);
+                Objects.equals(this.mLocByIdLoc, entity.mLocByIdLoc) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idSloc, cdSubl, nmSubl, gstin, gstDoc, mLocByIdLoc, mVendorsByIdSloc);
+        return Objects.hash(idSloc, cdSubl, nmSubl, gstin, gstDoc, mLocByIdLoc);
     }
 
     @Override
@@ -81,7 +82,6 @@ public class MSublocDto implements Serializable {
                 "nmSubl = " + nmSubl + ", " +
                 "gstin = " + gstin + ", " +
                 "gstDoc = " + gstDoc + ", " +
-                "mLocByIdLoc = " + mLocByIdLoc + ", " +
-                "mVendorsByIdSloc = " + mVendorsByIdSloc + ")";
+                "mLocByIdLoc = " + mLocByIdLoc + ")";
     }
 }

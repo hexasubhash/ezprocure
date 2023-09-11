@@ -1,6 +1,6 @@
 package com.ezcode.ezprocure.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.sql.Date;
 import java.util.Objects;

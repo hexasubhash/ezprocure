@@ -11,7 +11,7 @@ import com.ezcode.ezprocure.security.payload.request.SignupRequest;
 import com.ezcode.ezprocure.security.payload.response.MessageResponse;
 import com.ezcode.ezprocure.security.payload.response.UserInfoResponse;
 import com.ezcode.ezprocure.services.UserDetailsImpl;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;

@@ -1,9 +1,6 @@
 package com.ezcode.ezprocure.dto;
 
-import com.ezcode.ezprocure.models.MVendor;
-
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -14,16 +11,23 @@ public class MLocDto implements Serializable {
     private final String nmLoc;
     private final String cdLoc;
     private final String companyGroupLogo;
-    private final MCountryDto mCountryByIdCountry;
-    private final Collection<MVendor> mVendorsByIdLoc;
+    private MCountryDto mCountryByIdCountry;
 
-    public MLocDto(int idLoc, String nmLoc, String cdLoc, String companyGroupLogo, MCountryDto mCountryByIdCountry, Collection<MVendor> mVendorsByIdLoc) {
+
+    public MLocDto(int idLoc, String nmLoc, String cdLoc, String companyGroupLogo, MCountryDto mCountryByIdCountry) {
         this.idLoc = idLoc;
         this.nmLoc = nmLoc;
         this.cdLoc = cdLoc;
         this.companyGroupLogo = companyGroupLogo;
         this.mCountryByIdCountry = mCountryByIdCountry;
-        this.mVendorsByIdLoc = mVendorsByIdLoc;
+
+    }
+
+    public MLocDto(int idLoc, String nmLoc, String cdLoc, String companyGroupLogo) {
+        this.idLoc = idLoc;
+        this.nmLoc = nmLoc;
+        this.cdLoc = cdLoc;
+        this.companyGroupLogo = companyGroupLogo;
     }
 
     public int getIdLoc() {
@@ -46,9 +50,7 @@ public class MLocDto implements Serializable {
         return mCountryByIdCountry;
     }
 
-    public Collection<MVendor> getMVendorsByIdLoc() {
-        return mVendorsByIdLoc;
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -59,13 +61,12 @@ public class MLocDto implements Serializable {
                 Objects.equals(this.nmLoc, entity.nmLoc) &&
                 Objects.equals(this.cdLoc, entity.cdLoc) &&
                 Objects.equals(this.companyGroupLogo, entity.companyGroupLogo) &&
-                Objects.equals(this.mCountryByIdCountry, entity.mCountryByIdCountry) &&
-                Objects.equals(this.mVendorsByIdLoc, entity.mVendorsByIdLoc);
+                Objects.equals(this.mCountryByIdCountry, entity.mCountryByIdCountry);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idLoc, nmLoc, cdLoc, companyGroupLogo, mCountryByIdCountry, mVendorsByIdLoc);
+        return Objects.hash(idLoc, nmLoc, cdLoc, companyGroupLogo, mCountryByIdCountry);
     }
 
     @Override
@@ -75,7 +76,6 @@ public class MLocDto implements Serializable {
                 "nmLoc = " + nmLoc + ", " +
                 "cdLoc = " + cdLoc + ", " +
                 "companyGroupLogo = " + companyGroupLogo + ", " +
-                "mCountryByIdCountry = " + mCountryByIdCountry + ", " +
-                "mVendorsByIdLoc = " + mVendorsByIdLoc + ")";
+                "mCountryByIdCountry = " + mCountryByIdCountry+ ")";
     }
 }

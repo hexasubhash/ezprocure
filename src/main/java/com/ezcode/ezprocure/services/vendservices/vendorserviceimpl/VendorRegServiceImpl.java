@@ -5,9 +5,11 @@ import com.ezcode.ezprocure.models.*;
 import com.ezcode.ezprocure.repository.*;
 import com.ezcode.ezprocure.services.vendservices.VendorRegService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,6 +41,9 @@ public class VendorRegServiceImpl implements VendorRegService {
     private MCertificateTypeRepository mCertificateTypeRepository;
 
     @Autowired
+    private MVendorRepository mVendorRepository;
+
+    @Autowired
     ModelMapper modelMapper;
 
     public List<MCountryDto> fetchAllCountry()
@@ -48,34 +53,63 @@ public class VendorRegServiceImpl implements VendorRegService {
         return mCountryDtos;
     }
 
+    @Override
+    public boolean saveVendorFormReg(MVendorDto mVendorDto) {
+        MVendor mVendor = new MVendor();
+        BeanUtils.copyProperties(mVendorDto,mVendor);
+        mVendorRepository.save(mVendor);
+        return true;
+    }
+
+
+
 
     public List<MLocDto> fetchAllStates()
     {
         List<MLoc> mLocs =  mLocRepository.findAll();
-        List<MLocDto> mLocDtos = mLocs.stream().map(mLoc -> modelMapper.map(mLoc, MLocDto.class)).collect(Collectors.toList());
+        List<MLocDto> mLocDtos = new ArrayList<>();
+        for(MLoc mLoc : mLocs)
+        {
+            MLocDto mLocDto = new MLocDto(mLoc.getIdLoc(),mLoc.getNmLoc(),mLoc.getCdLoc(),mLoc.getCompanyGroupLogo());
+            mLocDtos.add(mLocDto);
+        }
         return mLocDtos;
     }
 
     public List<MSublocDto> fetchAllCities()
     {
+        List<MSublocDto> mSublocDtos = new ArrayList<>();
         List<MSubloc> mSublocs =  mSubLocRepository.findAll();
-        List<MSublocDto> mSublocDtos = mSublocs.stream().map(mSubloc -> modelMapper.map(mSubloc, MSublocDto.class)).collect(Collectors.toList());
+        for (MSubloc mSubloc : mSublocs )
+        {
+            MSublocDto mSublocDto = new MSublocDto(mSubloc.getIdSloc(),mSubloc.getCdSubl(), mSubloc.getNmSubl(),mSubloc.getGstin(),mSubloc.getGstDoc());
+            mSublocDtos.add(mSublocDto);
+        }
         return mSublocDtos;
     }
 
 
     public List<MBuildingDto> fetchDistrictsById(int id)
     {
-        List<MBuilding> mBuildings =  mBuildingRepository.findMBuildingByIsSubLoc(String.valueOf(id));
-        List<MBuildingDto> mBuildingDtos = mBuildings.stream().map(mBuilding -> modelMapper.map(mBuildings, MBuildingDto.class)).collect(Collectors.toList());
+        List<MBuilding> mBuildings =  mBuildingRepository.findMBuildingByIdBuilding(String.valueOf(id));
+        List<MBuildingDto> mBuildingDtos = new ArrayList<>();
+        for (MBuilding mBuilding : mBuildings) {
+        	MBuildingDto buildingDto = new MBuildingDto(mBuilding.getIdBuilding(),mBuilding.getNmBuilding(),mBuilding.getCdBuilding());
+            mBuildingDtos.add(buildingDto);
+		}
         return mBuildingDtos;
     }
 
 
     public List<MBussTypeDto> fetchAllBusType()
     {
+        List<MBussTypeDto> mBussTypeDtos = new ArrayList<>();
         List<MBussType> mBussTypes = mBusTypeRepository.findAll();
-        List<MBussTypeDto> mBussTypeDtos = mBussTypes.stream().map(mBussType -> modelMapper.map(mBussTypes, MBussTypeDto.class)).collect(Collectors.toList());
+        for (MBussType mBussType: mBussTypes)
+        {
+            MBussTypeDto mBussTypeDto = new MBussTypeDto(mBussType.getIdBussType(),mBussType.getNmBussType());
+            mBussTypeDtos.add(mBussTypeDto);
+        }
         return mBussTypeDtos;
     }
 
@@ -83,23 +117,37 @@ public class VendorRegServiceImpl implements VendorRegService {
     public List<MAssetDivDto> fetchAllAssetDiv()
     {
         List<MAssetDiv> mAssetDivs = mAssetDivRepository.findAll();
-        List<MAssetDivDto> mBussTypeDtos = mAssetDivs.stream().map(mAssetDiv -> modelMapper.map(mAssetDivs, MAssetDivDto.class)).collect(Collectors.toList());
+        List<MAssetDivDto> mBussTypeDtos = new ArrayList<>();
+        for(MAssetDiv mAssetDiv: mAssetDivs){
+            MAssetDivDto mAssetDivDto = new MAssetDivDto(mAssetDiv.getIdAssetdiv(),mAssetDiv.getCdAssetdiv(),mAssetDiv.getDsAssetdiv(),mAssetDiv.getNmAssetdiv(),mAssetDiv.getTypeGrp(),mAssetDiv.getFileName());
+            mBussTypeDtos.add(mAssetDivDto);
+        }
         return mBussTypeDtos;
     }
 
 
     public List<MSubassetDivDto> fetchSubAssetDivBId(int id)
     {
+        List<MSubassetDivDto> mAssetDivDtos  = new ArrayList<>();
         List<MSubassetDiv> mSubassetDivs = mSubAssetDivRepository.findByMMAssetDivByIdAssetdiv(id);
-        List<MSubassetDivDto> mAssetDivDtos = mSubassetDivs.stream().map(mSubassetDiv -> modelMapper.map(mSubassetDivs, MSubassetDivDto.class)).collect(Collectors.toList());
+
+        for (MSubassetDiv mSubassetDiv : mSubassetDivs) {
+            MSubassetDivDto mSubassetDivDto = new MSubassetDivDto(mSubassetDiv.getIdSAssetdiv(),mSubassetDiv.getNmSAssetdiv(),mSubassetDiv.getCdSAssetdiv(),mSubassetDiv.getPreAsset(),mSubassetDiv.getTypeCus(),mSubassetDiv.getFileName());
+            mAssetDivDtos.add(mSubassetDivDto);
+        }
         return mAssetDivDtos;
     }
 
 
     public List<MCertificateTypeDto> fetchAllCertType()
     {
+        List<MCertificateTypeDto> mCertificateTypeDtos = new ArrayList<>();
         List<MCertificateType> mCertificateTypes = mCertificateTypeRepository.findAll();
-        List<MCertificateTypeDto> mCertificateTypeDtos = mCertificateTypes.stream().map(mCertificateType -> modelMapper.map(mCertificateTypes, MCertificateTypeDto.class)).collect(Collectors.toList());
+        for(MCertificateType mCertificateType:mCertificateTypes)
+        {
+            MCertificateTypeDto mCertificateTypeDto = new MCertificateTypeDto(mCertificateType.getIdCertificateType(),mCertificateType.getNmCertificateType());
+            mCertificateTypeDtos.add(mCertificateTypeDto);
+        }
         return mCertificateTypeDtos;
     }
 }

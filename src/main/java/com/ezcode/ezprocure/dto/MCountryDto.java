@@ -1,9 +1,6 @@
 package com.ezcode.ezprocure.dto;
 
-import com.ezcode.ezprocure.models.MVendor;
-
 import java.io.Serializable;
-import java.util.Collection;
 
 /**
  * A DTO for the {@link com.ezcode.ezprocure.models.MCountry} entity
@@ -12,7 +9,7 @@ public class MCountryDto implements Serializable {
     private int idCountry;
     private String nmCountry;
     private String cdCountry;
-    private Collection<MVendor> mVendorsByIdCountry;
+    //private Collection<MVendor> mVendorsByIdCountry;
 
 
     public int getIdCountry() {
@@ -27,9 +24,9 @@ public class MCountryDto implements Serializable {
         return cdCountry;
     }
 
-    public Collection<MVendor> getMVendorsByIdCountry() {
+   /* public Collection<MVendor> getMVendorsByIdCountry() {
         return mVendorsByIdCountry;
-    }
+    }*/
 
 
 
@@ -65,7 +62,7 @@ public class MCountryDto implements Serializable {
      *
      * @param mVendorsByIdCountry
      */
-    public void setMVendorsByIdCountry(Collection<MVendor> mVendorsByIdCountry) {
+   /* public void setMVendorsByIdCountry(Collection<MVendor> mVendorsByIdCountry) {
         this.mVendorsByIdCountry = mVendorsByIdCountry;
-    }
+    }*/
 }
